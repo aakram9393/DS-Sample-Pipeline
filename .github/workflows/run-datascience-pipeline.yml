@@ -1,7 +1,9 @@
+name: Run Data Science Pipeline
+
 on:
   push:
     branches:
-      - main  # Trigger the workflow on push to main branch
+      - main  # Trigger the workflow on push to the main branch
 
 jobs:
   deploy:
@@ -29,20 +31,21 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: ${{ secrets.EC2_PORT }}
           script: |
-            cd /home/vagrant/ds-pipeline-code
-            docker build -t datascience-pipeline:latest .
+            cd /home/vagrant/ds-pipeline-code  # Navigate to the directory where the code is copied
+            docker build -t datascience-pipeline:latest .  # Build the Docker image
 
-  restart_containers: 
-      needs: deploy  # Ensure that this job runs after the deploy job
-      runs-on: ubuntu-latest 
+  restart_containers:
+    needs: deploy  # Ensure that this job runs after the deploy job
+    runs-on: ubuntu-latest
+    steps:
       - name: SSH and restart services
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          port: ${{ secrets.EC2_PORT  }}
+          port: ${{ secrets.EC2_PORT }}
           script: |
-            cd /home/vagrant/mlflow 
+            cd /home/vagrant/mlflow  # Navigate to the directory with the docker-compose.yml
             docker-compose up -d --no-deps project # Restart project service without dependencies
             docker-compose up -d --no-deps model_serving # Restart model_serving service without dependencies
