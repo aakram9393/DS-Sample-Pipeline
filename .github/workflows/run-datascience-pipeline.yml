@@ -35,7 +35,7 @@ jobs:
             docker build -t datascience-pipeline:latest .  # Build the Docker image
 
   restart_containers:
-    needs: deploy  # Ensure that this job runs after the deploy job
+    needs: deploy  # Ensure that this job runs after the deploy job 
     runs-on: ubuntu-latest
     steps:
       - name: SSH and restart services
