@@ -17,4 +17,4 @@ COPY . /app
 ENV MLFLOW_TRACKING_URI=http://mlflow:5000
 
 # Run train.py when the container launches
-CMD ["mlflow", "run", ".", "--verbose"]
+CMD ["mlflow", "run", "."]
