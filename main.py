@@ -17,6 +17,7 @@ mlflow.set_tracking_uri("http://mlflow:5000")
 # Function to check for the default experiment or create it if it does not exist
 def get_or_create_experiment(experiment_name="Default"):
     experiment = mlflow.get_experiment_by_name(experiment_name)
+    print("test this line",f"{experiment}")
     if experiment is None:
         experiment_id = mlflow.create_experiment(experiment_name)
         print(f"Experiment created with ID: {experiment_id}")
