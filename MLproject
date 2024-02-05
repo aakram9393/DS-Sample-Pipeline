@@ -1,0 +1,12 @@
+name: my_ml_project
+
+conda_env: conda.yaml  # If you're using a Conda environment, else remove this line
+
+docker_env:  # Only include if you're using a custom Docker environment
+  image: "my_ml_project_image"
+
+entry_points:
+  main:
+    parameters:
+      alpha: {type: float, default: 0.5}
+    command: "python main.py --alpha {alpha}"
