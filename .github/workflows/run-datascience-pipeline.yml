@@ -32,7 +32,7 @@ jobs:
           port: ${{ secrets.EC2_PORT }}
           script: |
             cd /home/vagrant/ds-pipeline-code  # Navigate to the directory where the code is copied
-            docker build -t datascience-pipeline:latest .  # Build the Docker image
+            docker build --cache-from=datascience-pipeline:latest -t datascience-pipeline:latest .  # Build the Docker image
 
   restart_containers:
     needs: deploy  # Ensure that this job runs after the deploy job 
@@ -47,5 +47,5 @@ jobs:
           port: ${{ secrets.EC2_PORT }}
           script: |
             cd /home/vagrant/mlflow  # Navigate to the directory with the docker-compose.yml
-            docker-compose up -d --no-deps project # Restart project service without dependencies
-            docker-compose up -d --no-deps model_serving # Restart model_serving service without dependencies
+            docker-compose up  --no-deps project # Restart project service without dependencies
+            # docker-compose up  --no-deps model_serving # Restart model_serving service without dependencies
