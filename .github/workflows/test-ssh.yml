@@ -17,6 +17,9 @@ jobs:
 
     - name: Execute SSH Command
       run: |
+        echo ${{ secrets.EC2_PORT }}
+        echo ${{ secrets.EC2_HOST }}
+        echo ${{ secrets.EC2_SSH_KEY }}
         ssh -p ${{ secrets.EC2_PORT }} vagrant@${{ secrets.EC2_HOST }} "echo 'Hello, World!'"
       env:
         USER: vagrant
