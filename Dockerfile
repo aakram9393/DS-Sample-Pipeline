@@ -16,7 +16,5 @@ COPY . /app
 # Define environment variable
 ENV MLFLOW_TRACKING_URI=http://mlflow:5000
 
-RUN echo "MLFLOW_TRACKING_URI=$MLFLOW_TRACKING_URI"
-
 # Run train.py when the container launches
-CMD ["mlflow", "run", "."]
+CMD ["mlflow", "run", ".", "--verbose"]
