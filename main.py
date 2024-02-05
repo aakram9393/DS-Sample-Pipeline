@@ -14,8 +14,22 @@ args = parser.parse_args()
 # MLflow tracking URI
 mlflow.set_tracking_uri("http://localhost:5000")
 
-# Start an MLflow run
-with mlflow.start_run():
+# Function to check for the default experiment or create it if it does not exist
+def get_or_create_experiment(experiment_name="Default"):
+    experiment = mlflow.get_experiment_by_name(experiment_name)
+    if experiment is None:
+        experiment_id = mlflow.create_experiment(experiment_name)
+        print(f"Experiment created with ID: {experiment_id}")
+    else:
+        experiment_id = experiment.experiment_id
+        print(f"Using existing experiment with ID: {experiment_id}")
+    return experiment_id
+
+# Ensure there is an experiment to use
+experiment_id = get_or_create_experiment()
+
+# Start an MLflow run within the context of the experiment
+with mlflow.start_run(experiment_id=experiment_id):
     # Load Iris dataset
     iris = load_iris()
     X, y = iris.data, iris.target
