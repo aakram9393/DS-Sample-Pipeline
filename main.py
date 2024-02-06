@@ -46,7 +46,7 @@ with mlflow.start_run():
     # Log the sklearn model and register as a version in MLflow model registry  
     mlflow.sklearn.log_model(model, "model", registered_model_name="IrisClassifier")
 
-    mlflow.log_artifact(model_filename)
+    # mlflow.log_artifact(model_filename)
 
    
  
