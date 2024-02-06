@@ -51,5 +51,5 @@ with mlflow.start_run():
     # Log the sklearn model and register as a version in MLflow model registry
     mlflow.sklearn.log_model(model, "model", registered_model_name="IrisClassifier")
     
-
+ 
 print("Model training and logging completed.")
