@@ -25,4 +25,4 @@ RUN python --version
 RUN ls -l
 
 # Run train.py when the container launches
-CMD ["mlflow", "run", ".", "--env-manager", "local"]
+CMD ["mlflow", "run", ".", "--env-manager", "local", "--experiment-id", "712036382208727785"]
