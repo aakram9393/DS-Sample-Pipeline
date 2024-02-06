@@ -23,4 +23,4 @@ ENV MLFLOW_PYTHON_BIN /usr/local/bin/python
 RUN python --version
 
 # Run train.py when the container launches
-CMD ["mlflow", "run", ".", "--experiment-id", "786771019491956264"]
+CMD ["mlflow", "run", ".", "--no-conda", "--experiment-id", "786771019491956264"]
