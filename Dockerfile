@@ -16,5 +16,11 @@ COPY . /app
 # Define environment variable
 ENV MLFLOW_TRACKING_URI=http://mlflow:5000
 
+# Define environment variable to specify the Python binary for MLflow
+ENV MLFLOW_PYTHON_BIN /usr/local/bin/python
+
+# Echo the Python version
+RUN python --version
+
 # Run train.py when the container launches
 CMD ["mlflow", "run", ".", "--experiment-id", "786771019491956264"]
