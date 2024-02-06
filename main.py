@@ -49,7 +49,7 @@ with mlflow.start_run(experiment_id=experiment_id):
     mlflow.log_metric("accuracy", accuracy_score(y_test, predictions))
     
     # Log the sklearn model and register as a version in MLflow model registry
-    mlflow.sklearn.log_model(model, "/mlflow/artifacts", registered_model_name="IrisClassifier")
+    mlflow.sklearn.log_model(model, "model", registered_model_name="IrisClassifier")
     
 
 print("Model training and logging completed.")
