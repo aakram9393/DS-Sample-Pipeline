@@ -6,7 +6,7 @@ on:
       - main  # Trigger the workflow on push to the main branch
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,8 +34,8 @@ jobs:
             cd /home/vagrant/ds-pipeline-code  # Navigate to the directory where the code is copied
             docker build --cache-from=datascience-pipeline:latest -t datascience-pipeline:latest .  # Build the Docker image
 
-  restart_containers:
-    needs: deploy  # Ensure that this job runs after the deploy job 
+  deploy_containers:
+    needs: build  # Ensure that this job runs after the deploy job 
     runs-on: ubuntu-latest
     steps:
       - name: SSH and restart services
