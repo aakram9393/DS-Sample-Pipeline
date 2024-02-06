@@ -16,7 +16,7 @@ COPY . /app
 # Define environment variable
 ENV MLFLOW_TRACKING_URI=http://mlflow:5000
 
-# Define environment variable to specify the Python binary for MLflow
+# Define environment variable to specify the Python binary for MLflow 
 ENV MLFLOW_PYTHON_BIN /usr/local/bin/python
 
 # Echo the Python version
