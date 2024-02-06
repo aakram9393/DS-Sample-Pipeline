@@ -39,9 +39,13 @@ RUN curl https://pyenv.run | bash
 ENV PYENV_ROOT /root/.pyenv
 ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
 
-# Initialize pyenv and install a specific Python version
-RUN pyenv install 3.8.5
-RUN pyenv global 3.8.5
+# Initialize pyenv and install the required Python version
+RUN pyenv install 3.8.18
+RUN pyenv global 3.8.18
+
+# Optionally, if you want to make sure the correct Python version is used
+# you can run a command to confirm it:
+RUN python --version
 
 # Copy the current directory contents into the container at /app
 COPY . /app

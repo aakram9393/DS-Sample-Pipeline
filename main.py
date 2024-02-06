@@ -12,11 +12,11 @@ args = parser.parse_args()
 
 # MLflow tracking URI
 mlflow.set_tracking_uri("http://mlflow:5000")
-try:
-    # Check if the default experiment exists
-    mlflow.create_experiment(name="Default", artifact_location="/mlflow/artifacts")
-except Exception as e:
-    print(f"An exception occurred: {e}")
+# try:
+#     # Check if the default experiment exists
+#     mlflow.create_experiment(name="Default", artifact_location="/mlflow/artifacts")
+# except Exception as e:
+#     print(f"An exception occurred: {e}")
 
 # Function to check for the default experiment or create it if it does not exist
 def get_or_create_experiment(experiment_name):
@@ -27,7 +27,7 @@ def get_or_create_experiment(experiment_name):
         return mlflow.create_experiment(experiment_name)
 
 # Ensure there is an experiment to use
-experiment_name = "Default Experiment"
+experiment_name = "Default"
 experiment_id = get_or_create_experiment(experiment_name)
 
 # Check if we got a valid experiment ID back
