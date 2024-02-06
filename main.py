@@ -7,7 +7,7 @@ from sklearn.metrics import accuracy_score
 
 # Parsing alpha value if passed
 parser = argparse.ArgumentParser()
-parser.add_argument("--alpha", type=float, default=0.6, help="Regularization strength")
+parser.add_argument("--alpha", type=float, default=0.5, help="Regularization strength")
 args = parser.parse_args()
 
 # MLflow tracking URI
