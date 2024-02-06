@@ -4,6 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+import joblib
 
 # Parsing alpha value if passed
 parser = argparse.ArgumentParser()
@@ -12,13 +13,6 @@ args = parser.parse_args()
 
 # MLflow tracking URI
 mlflow.set_tracking_uri("http://mlflow:5000")
-# try:
-#     # Check if the default experiment exists
-#     mlflow.create_experiment(name="Default", artifact_location="/mlflow/artifacts")
-# except Exception as e:
-#     print(f"An exception occurred: {e}")
-
-# Function to check for the default experiment or create it if it does not exist
 def get_or_create_experiment(experiment_name):
     experiment = mlflow.get_experiment_by_name(experiment_name)
     if experiment:
@@ -47,6 +41,11 @@ with mlflow.start_run(experiment_id=experiment_id):
     model = RandomForestClassifier(max_depth=5)
     model.fit(X_train, y_train)
 
+    # Save model
+    model_file_path = "MLmodel"
+    joblib.dump(model, "MLmodel")
+    mlflow.log_artifact(model_file_path)
+
     # Predictions
     predictions = model.predict(X_test)
 
@@ -56,5 +55,6 @@ with mlflow.start_run(experiment_id=experiment_id):
     
     # Log the sklearn model and register as a version in MLflow model registry
     mlflow.sklearn.log_model(model, "model", registered_model_name="IrisClassifier")
+    
 
 print("Model training and logging completed.")
