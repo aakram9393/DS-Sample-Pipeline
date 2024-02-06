@@ -22,5 +22,7 @@ ENV MLFLOW_PYTHON_BIN /usr/local/bin/python
 # Echo the Python version
 RUN python --version
 
+RUN ls -l
+
 # Run train.py when the container launches
 CMD ["mlflow", "run", ".", "--env-manager", "local"]
