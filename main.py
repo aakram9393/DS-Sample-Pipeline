@@ -12,23 +12,24 @@ args = parser.parse_args()
 
 # MLflow tracking URI
 mlflow.set_tracking_uri("http://mlflow:5000")
-def get_or_create_experiment(experiment_name):
-    experiment = mlflow.get_experiment_by_name(experiment_name)
-    if experiment:
-        return experiment.experiment_id
-    else:
-        return mlflow.create_experiment(experiment_name)
+# def get_or_create_experiment(experiment_name):
+#     experiment = mlflow.get_experiment_by_name(experiment_name)
+#     if experiment:
+#         return experiment.experiment_id
+#     else:
+#         return mlflow.create_experiment(experiment_name)
 
-# Ensure there is an experiment to use
-experiment_name = "Default"
-experiment_id = get_or_create_experiment(experiment_name)
+# # Ensure there is an experiment to use
+# experiment_name = "Default"
+# experiment_id = get_or_create_experiment(experiment_name)
 
-# Check if we got a valid experiment ID back
-if experiment_id is None:
-    raise Exception(f"Failed to create or retrieve experiment '{experiment_name}'")
+# # Check if we got a valid experiment ID back
+# if experiment_id is None:
+#     raise Exception(f"Failed to create or retrieve experiment '{experiment_name}'")
 
 # Start an MLflow run within the context of the experiment
-with mlflow.start_run(experiment_id=experiment_id):
+# experiment_id=experiment_id
+with mlflow.start_run():
     # Load Iris dataset
     iris = load_iris()
     X, y = iris.data, iris.target
