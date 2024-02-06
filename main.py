@@ -50,6 +50,9 @@ with mlflow.start_run(experiment_id=experiment_id):
     
     # Log the sklearn model and register as a version in MLflow model registry
     mlflow.sklearn.log_model(model, "model", registered_model_name="IrisClassifier")
+
+    joblib.dump(model, "model")
+    mlflow.log_artifact("model")
     
 
 print("Model training and logging completed.")
