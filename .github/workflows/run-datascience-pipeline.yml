@@ -48,4 +48,4 @@ jobs:
           script: |
             cd /home/vagrant/mlflow  # Navigate to the directory with the docker-compose.yml
             docker-compose up -d --no-deps project # Restart project service without dependencies
-            docker-compose up --build --no-deps model_serving # Restart model_serving service without dependencies
+            docker-compose up  --build --no-deps model_serving # Restart model_serving service without dependencies
